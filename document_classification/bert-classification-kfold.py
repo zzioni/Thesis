@@ -184,7 +184,6 @@ def train(data, learning_rate, epochs):
                 tmp_tr_accuracy = accuracy_score(labels.cpu().numpy(), predictions.cpu().numpy())
                 
                 tr_accuracy += tmp_tr_accuracy        
-                #torch.nn.utils.clip_grad_norm_(parameters=model.parameters(), max_norm=MAX_GRAD_NORM)
                 
                 loss.mean().backward()
                 optimizer.step()
@@ -194,9 +193,6 @@ def train(data, learning_rate, epochs):
             epoch_loss = tr_loss / nb_tr_steps
             tr_accuracy = tr_accuracy / nb_tr_steps
             print(f'epoch_loss={epoch_loss}, tr_accuracy={tr_accuracy}')
-            #f_train.write(f'epoch_loss={epoch_loss}, tr_accuracy={tr_accuracy}\n')
-            #print(classification_report(tr_labels, tr_preds, target_names=classes, zero_division=0))
-            #f_train.write(classification_report(tr_labels, tr_preds, target_names=classes, zero_division=0))
                 
 
 
@@ -242,14 +238,12 @@ def train(data, learning_rate, epochs):
                 print(classification_report(val_labels, val_preds, target_names=classes, zero_division=0))
                 f_predict.write(f'epoch_loss={epoch_loss}, val_accuracy={val_accuracy}\n')
                 f_predict.write(classification_report(val_labels, val_preds, target_names=classes, zero_division=0))
-        #f_train.close()
         f_predict.close()
                   
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
-#np.random.seed(52)
 
 input_dir = '/data0/jiwon/KoBERT-NER/230408-ner-for-classification-abst.csv'
 data = pd.read_csv(input_dir, encoding="utf-8")
