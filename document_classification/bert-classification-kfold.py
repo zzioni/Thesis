@@ -67,21 +67,14 @@ class Dataset(torch.utils.data.Dataset):
 class BertClassifier(nn.Module):
 
     def __init__(self, dropout=0.5):
-
         super(BertClassifier, self).__init__()
-
         self.bert = BertModel.from_pretrained('allenai/scibert_scivocab_uncased')
-        self.dropout = nn.Dropout(dropout)
         self.linear = nn.Linear(768, 7)
-        self.relu = nn.ReLU()
+
 
     def forward(self, input_id, mask):
-
         _, pooled_output = self.bert(input_ids= input_id, attention_mask=mask,return_dict=False)
-        #dropout_output = self.dropout(pooled_output)
         linear_output = self.linear(pooled_output)
-        #final_layer = self.relu(linear_output)
-
         return linear_output
 
 
@@ -92,8 +85,6 @@ def train(data, learning_rate, epochs):
         model = BertClassifier()
 
         print(f'-----------------------------FOLD {fold}----------------------------')
-
-        #f_train = open(f"{log_path}/output-train-{fold}.txt", "a", encoding='utf8')
         f_predict = open(f"{log_path}/output-predict-{fold}.txt", "a", encoding='utf8')
 
 
@@ -113,7 +104,6 @@ def train(data, learning_rate, epochs):
         val_dataloader = torch.utils.data.DataLoader(val, batch_size=80)
 
         classes = ['registration','classification','detection','segmentation', 'enhancement', 'reconstruction', 'CAD']
-        #classes = ['registration','classification','detection','segmentation']
         yclasses =[]
 
         for label_task in train_data['task'].values.tolist():
@@ -142,7 +132,6 @@ def train(data, learning_rate, epochs):
 
         for epoch_num in range(epochs):
             print(f'---------------------------------------------EPOCH:{epoch_num+1}---------------------------------------------')
-            #f_train.write(f'---------------------------------------------EPOCH:{epoch_num+1}---------------------------------------------\n')
             f_predict.write(f'---------------------------------------------EPOCH:{epoch_num+1}---------------------------------------------\n')
 
             tr_loss, tr_accuracy = 0, 0
