@@ -1,0 +1,39 @@
+import pandas as pd
+
+def thres_all():
+    correct_path = 'dataset_tagging_correct_2.tsv'
+    correct_df = pd.read_csv(correct_path, encoding="utf-8", sep='\t')
+    path = 'thres_tagging/sample(0.9).tsv'
+    df = pd.read_csv(path, encoding="utf8", sep='\t')
+
+    correct_list = correct_df['tag'].tolist()
+    thres_list = df['tag'].tolist()
+    
+    TP = 0
+    TN = 0
+    FP = 0
+    FN = 0
+
+    for cor_tag, tag, in zip(correct_list, thres_list):
+        if tag != 'O':
+            if cor_tag == tag:
+                TP += 1
+            else:
+                FP += 1
+        if tag == 'O':
+            if cor_tag == tag:
+                TN += 1
+            else:
+                FN += 1
+
+    precision = TP/(TP+FP)
+    recall = TP/(TP+FN)
+
+    print(f'precision = {str(precision)}')
+    print(f'recall = {str(recall)}')
+    print(f'f1 = {2*((precision*recall)/(precision+recall))}')
+
+
+
+if __name__ == '__main__':
+    thres_all()
