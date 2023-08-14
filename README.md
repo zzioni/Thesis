@@ -23,7 +23,7 @@ The overall research process is as follows: The training dataset for each model 
 
 **(2) Calculating f1-score for selecting thershold of automatic tagging:** ./making_ner_dataset/compute_f1scoreFORthres
 
-**(3) Data aumentation:** ./making_ner_dataset/dataset_augmentation.py
+**(3) Data augmentation:** ./making_ner_dataset/dataset_augmentation.py
 
 **(4) others:** ./making_ner_dataset/postprocessing.py
 <br></br>
