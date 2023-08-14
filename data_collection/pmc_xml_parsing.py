@@ -20,30 +20,11 @@ def xml_parsing():
     no_list = []
     final_list = []
 
-  
-    #per query
     list_path = ''
     with open(list_path, "r", encoding="utf8") as f:
         lines = f.readlines()
     pmc_list = [l.replace('\n','') for l in lines]
     print(len(pmc_list))
-
-
-    #for full
-    # list_path = ''
-    # with open(list_path, "r", encoding="utf8") as f:
-    #     lines = f.readlines()
-    # pmc_list = [l.replace('\n','') for l in lines]
-
-    # list_path = '/Data/jiwon/pmc_list_TIAB/query_list_full'
-    # with open(list_path, "r", encoding="utf8") as f:
-    #     lines = f.readlines()
-    # pmc_list_query = [l.replace('\n','') for l in lines]
-
-    # pmc_list_final = list(set(pmc_list) - set(pmc_list_query))
-    # pmc_list = pmc_list_final
-
-    # print(len(pmc_list))
 
 
     for ID in tqdm(pmc_list):
@@ -79,7 +60,9 @@ def xml_parsing():
         soup = BeautifulSoup(xml_data, 'lxml')
 
         front = soup.find('front')
-        title = front.find('title-group').text.replace('\n', '')
+        try:
+            title = front.find('title-group').text.replace('\n', '')
+        except: title = ''
 
         try: 
             abstract = front.find('abstract').text.replace('\n', '').replace('\t','')     
