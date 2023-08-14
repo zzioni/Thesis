@@ -9,7 +9,7 @@ The overall research process is as follows: The training dataset for each model 
 <br></br>
 
 ## 2. Data collection and preprocessing
-### 1) collecting biomedical from Pubmed Central
+### 1) Collecting biomedical from Pubmed Central
 **(1) Making a pmc list:** data_collection/pmc_xml_parsing.py
 
 **(2) XML parsing:** ./data_collection/pmc_xml_parsing.py
@@ -25,18 +25,18 @@ The overall research process is as follows: The training dataset for each model 
 
 **(3) Data augmentation:** ./making_ner_dataset/dataset_augmentation.py
 
-**(4) others:** ./making_ner_dataset/postprocessing.py
+**(4) Others:** ./making_ner_dataset/postprocessing.py
 <br></br>
 
 ## 4. Document classification
-**(1) Baseline-model** ./document_classification/Baseline-kfold.py
+**(1) Baseline-model:** ./document_classification/Baseline-kfold.py
 
-**(2) EnBERT** ./document_classification/EnBERT-kfold.py
+**(2) EnBERT:** ./document_classification/EnBERT-kfold.py
 <br></br>
 <p align="center"><img src=https://github.com/zzioni/Thesis/assets/106359887/be2380a9-e46c-468e-aecf-5bcea2e3cf5a"  width="600" style="margin:auto; display:block;"></p>
 <br></br>
 
-**(3) SenBERT** ./document_classification/SenBERT-kfold.py
+**(3) SenBERT:** ./document_classification/SenBERT-kfold.py
 <br></br>
 <p align="center"><img src=https://github.com/zzioni/Thesis/assets/106359887/00b8cabb-e34a-4b79-a696-4f76078b7bcd"  width="600" style="margin:auto; display:block;"></p>
 <br></br>
