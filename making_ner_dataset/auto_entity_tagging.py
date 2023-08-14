@@ -19,29 +19,18 @@ def make_dataset(thres):
     with open('/Data/jiwon/data/dataset_list_variants', 'rb') as f:
         dataset_list = pickle.load(f)
     dataset_list = list(set(dataset_list))
-    dataset_list.remove('nan')
-    dataset_list.remove('CRC')
-    dataset_list.remove('CBC')
-    dataset_list.remove('Thyroid')
-    dataset_list.remove('Thyroid Disease')
     dataset_list.sort(key=len, reverse=True)
     
     with open('/Data/jiwon/data/method_list_variants', 'rb') as f:
         method_list = pickle.load(f)
     method_list = list(set(method_list))
-    method_list.remove('nan')
-    method_list.append('CNN')
-    method_list.append('Convolutional neural network')
-    method_list.append('Attention mechanism')
-    method_list.append('RCNN')
-    method_list.append('ViT')
     method_list.sort(key=len, reverse=True)
 
 
     nlp = spacy.load("en_core_web_md")
 
 
-    df = pd.read_csv('/Data/jiwon/7-classes/230329_PMCforNER_all.csv', low_memory = False)
+    df = pd.read_csv('', low_memory = False)
     df_abst = df['full_text'].to_list() + df['abstract'].to_list()
     #df_abst = df['abstract'].to_list()
 
@@ -180,28 +169,17 @@ def make_dataset_for_thres(thres):
     with open('/Data/jiwon/data/dataset_list_variants', 'rb') as f:
         dataset_list = pickle.load(f)
     dataset_list = list(set(dataset_list))
-    dataset_list.remove('nan')
-    dataset_list.remove('CRC')
-    dataset_list.remove('CBC')
-    dataset_list.remove('Thyroid')
-    dataset_list.remove('Thyroid Disease')
     dataset_list.sort(key=len, reverse=True)
     
     with open('/Data/jiwon/data/method_list_variants', 'rb') as f:
         method_list = pickle.load(f)
     method_list = list(set(method_list))
-    method_list.remove('nan')
-    method_list.append('CNN')
-    method_list.append('Convolutional neural network')
-    method_list.append('Attention mechanism')
-    method_list.append('RCNN')
-    method_list.append('ViT')
     method_list.sort(key=len, reverse=True)
 
 
     nlp = spacy.load("en_core_web_md")
 
-    df = pd.read_csv('/Data/jiwon/sample_1000(2).csv', low_memory = False)
+    df = pd.read_csv('/Data/jiwon/sample_1000.csv', low_memory = False)
     df_abst = df['sent'].to_list()
 
 
