@@ -39,7 +39,7 @@ class Dataset(torch.utils.data.Dataset):
 
         self.labels = [labels[label] for label in df['task']]
         self.texts = [tokenizer(text, padding='max_length', max_length = 512, truncation=True, return_tensors="pt") for text in df['abstract']]
-        self.tagged_sent = [tokenizer(text, padding='max_length', max_length = 512, truncation=True, return_tensors="pt") for text in df['ner_entity']]
+        self.tagged_entitiy = [tokenizer(text, padding='max_length', max_length = 512, truncation=True, return_tensors="pt") for text in df['ner_entity']]
 
     def classes(self):
         return self.labels
@@ -55,12 +55,12 @@ class Dataset(torch.utils.data.Dataset):
         # Fetch a batch of inputs
         return self.texts[idx]
 
-    def get_batch_texts_sent(self, idx):
+    def get_batch_texts_tag(self, idx):
         # Fetch a batch of inputs
-        return self.tagged_sent[idx]
+        return self.tagged_entitiy[idx]
 
     def __getitem__(self, idx):
-        batch_tagged_sent = self.get_batch_texts_sent(idx)
+        batch_tagged_sent = self.get_batch_texts_tag(idx)
         batch_texts = self.get_batch_texts(idx)
         batch_y = self.get_batch_labels(idx)
 
